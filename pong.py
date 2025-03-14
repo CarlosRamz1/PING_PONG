@@ -102,6 +102,10 @@ while running:
     pygame.draw.rect(screen, WHITE, paddle2)
     pygame.draw.ellipse(screen, WHITE, ball)
     
+    # Dibujar línea central simulando la red
+    for i in range(0, HEIGHT, 20):
+        pygame.draw.rect(screen, WHITE, (WIDTH//2 - 1, i, 2, 10))
+    
     score_text = font.render(f"{score1} - {score2}", True, WHITE)
     screen.blit(score_text, (WIDTH // 2 - 20, 20))
     
