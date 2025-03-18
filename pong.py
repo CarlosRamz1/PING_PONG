@@ -11,6 +11,7 @@ pygame.display.set_caption("CarlOz VS RAM")
 # Colores
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+LINE_THICKNESS = 1  # Grosor de la línea y contorno
 
 # Configuración de las paletas y la pelota
 PADDLE_WIDTH, PADDLE_HEIGHT = 10, 100
@@ -137,12 +138,16 @@ while running:
     if score1 >= winning_score or score2 >= winning_score:
         show_menu()  # Reiniciar el juego si alguien gana
     
+    # Dibujar contorno de la cancha
+    pygame.draw.rect(screen, WHITE, (0, 0, WIDTH, HEIGHT), LINE_THICKNESS)
+    
+    # Dibujar línea central continua
+    pygame.draw.line(screen, WHITE, (WIDTH//2, 0), (WIDTH//2, HEIGHT), LINE_THICKNESS)
+    
     # Dibujar paletas, pelota y puntuaciones
     pygame.draw.rect(screen, WHITE, paddle1)
     pygame.draw.rect(screen, WHITE, paddle2)
     pygame.draw.ellipse(screen, WHITE, ball)
-    for i in range(0, HEIGHT, 20):
-        pygame.draw.rect(screen, WHITE, (WIDTH//2 - 1, i, 2, 10))
     
     score_text = font.render(f"{score1} - {score2}", True, WHITE)
     screen.blit(score_text, (WIDTH // 2 - 20, 20))
